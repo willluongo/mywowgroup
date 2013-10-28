@@ -20,16 +20,20 @@ class Player
          @level = "n/a"
          @picture = "http://www.gravatar.com/avatar/00000000000000000000000000000000"
        end
-         
-
-   end
+    end
 end
 
 get '/' do
     @characters = []
-    JSON.parse(File.read("group.json"))["characters"].each do |char|
-        @characters.push(Player.new(char["name"],char["realm"]))
+    begin
+        JSON.parse(File.read("group.json"))["characters"].each do |char|
+            @characters.push(Player.new(char["name"],char["realm"]))
+        end
+        @heading = "Our characters:"
+    rescue => e
+        @heading = "Problem loading group.json file: " + e.message
     end
     @title = "My WoW group"
     haml :index
+
 end
