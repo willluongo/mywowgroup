@@ -13,12 +13,15 @@ class Player
        @url = "https://us.battle.net/api/wow/character/" + URI::encode(@realm) + "/" + URI::encode(@name)
        begin
          @info = JSON.parse(RestClient.get @url)
+         @level = @info["level"]
+         @picture = "https://us.battle.net/static-render/us/" + @info["thumbnail"]
        rescue => e
-         @info = "Error retrieving character"
+         @info = e.message
+         @level = "n/a"
+         @picture = "http://www.gravatar.com/avatar/00000000000000000000000000000000"
        end
          
-       @level = @info["level"]
-       @picture = "https://us.battle.net/static-render/us/" + @info["thumbnail"]
+
    end
 end
 
