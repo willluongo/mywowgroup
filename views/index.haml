@@ -6,8 +6,18 @@
   %body  
     %h1 Players
     %p  
-      Welcome to my website made with Sinatra and HAML
+      Our characters!
     %table
+      %th
+        Avatar
+      %th
+        Name
+      %th
+        Realm
+      %th
+        Level
+      %th
+        Info
       %tbody
         - @characters.each do |char|
           %tr
@@ -16,4 +26,6 @@
               %img(src="#{char.picture}")
             %td= char.name
             %td= char.realm
+            %td= char.level
+            %td= char.info
             
