@@ -1,0 +1,19 @@
+!!!  
+%html  
+  %head  
+    %title #{@title}
+    %link(rel="stylesheet" href="css/styles.css")  
+  %body  
+    %h1 Players
+    %p  
+      Welcome to my website made with Sinatra and HAML
+    %table
+      %tbody
+        - @characters.each do |char|
+          %tr
+          
+            %td
+              %img(src="#{char.picture}")
+            %td= char.name
+            %td= char.realm
+            
